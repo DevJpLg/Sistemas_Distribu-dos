@@ -1,1 +1,3 @@
-# Sistemas_Distribu-dos
+# Sistemas Distribuídos
+
+- Compilados de arquivos da matéria
