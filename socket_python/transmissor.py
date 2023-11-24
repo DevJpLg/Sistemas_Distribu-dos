@@ -1,9 +1,5 @@
 import socket
 
-"""
-Esse é o transmissor, e seu propósito é enviar as mensagens para o servidor.
-"""
-
 transmissor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 transmissor.connect(('localhost', 1111))
