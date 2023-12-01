@@ -5,12 +5,12 @@ import threading
 HOST = '127.0.0.1'
 PORTA = 7777
 
-apelido = input("Digite seu nome: ")
+apelido = input("Digite o seu nome: ")
 
-cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #O socket do cliente é criado (TCP/IP) e se conecta ao servidor
+cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #define o socket do cliente nos protocolos (TCP/IP) e se conecta ao servidor
 cliente.connect((HOST, PORTA))
 
-def receber(): #Recebe e imprime mensagens de um servidor de chat, e fecha a conexão se a mensagem for ‘!sair’ ou se ocorrer algum erro
+def receber(): #Recebe e imprime mensagens de um servidor de chat
     while True:
         try:
             mensagem = cliente.recv(1024).decode('utf-8')
@@ -18,11 +18,7 @@ def receber(): #Recebe e imprime mensagens de um servidor de chat, e fecha a con
                 cliente.send(apelido.encode('utf-8'))
             else:
                 print(mensagem)
-            if mensagem.strip() == "!sair":
-                cliente.close()
-                break
         except:
-            print("Você saiu do chat...")
             cliente.close()
             break
 
@@ -31,9 +27,6 @@ def escrever(): #Envia mensagens digitadas pelo usuário para um servidor de cha
         try:
             mensagem = input('')
             cliente.send(mensagem.encode('utf-8'))
-            if mensagem.strip() == "!sair":
-                cliente.close()
-                break
         except KeyboardInterrupt:
             break
 
